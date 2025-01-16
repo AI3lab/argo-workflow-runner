@@ -1,0 +1,19 @@
+{
+    "start": {
+        "node_1": {
+            "symbol": "LTCUSDT"
+        }
+    },
+    "node": {
+        "type": "custom_tool",
+        "config": {
+            "inputs": [
+                "node_1"
+            ],
+            "url": "https://api.binance.com/api/v3/ticker/price",
+            "method": "GET",
+            "headers": {},
+            "name": "binance-spot-price"
+        }
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "start": {
+        "__text": "generate images for MEME smart contract"
+    },
+    "node": {
+        "type": "intention",
+        "config": {
+            "inputs": [
+                "__text"
+            ],
+            "model": "gpt-3.5-turbo",
+            "memory_cnt": 0,
+            "branches": [
+                {
+                    "title": "MEME",
+                    "instruction": "When the user wants to generate images for MEME smart contract, select branch 'MEME'."
+                },
+                {
+                    "title": "web_reader",
+                    "instruction": "When the user give a website URL and wants to summarize the article, select branch 'web_reader'."
+                },
+                {
+                    "title": "google",
+                    "instruction": "When the user wants to query some realtime information, select branch 'google'."
+                }
+            ]
+        }
+    }
+}

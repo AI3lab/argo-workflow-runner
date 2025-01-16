@@ -1,0 +1,16 @@
+{
+    "start": {
+        "__arg1": "abc",
+        "__arg2": "123"
+    },
+    "node": {
+        "type": "code_block",
+        "config": {
+            "args": {
+                "arg1": "__arg1",
+                "arg2": "__arg2"
+            },
+            "code": "def main(arg1, arg2):\n    \n    import json\n    res = json.dumps([arg1 + arg2])\n    return {'result':res}\n"
+        }
+    }
+}

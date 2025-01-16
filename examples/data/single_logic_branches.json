@@ -1,0 +1,21 @@
+{
+    "start": {
+        "__text": "Nice to meet you."
+    },
+    "node": {
+        "type": "logic_branches",
+        "config": {
+            "branches": [
+                {
+                    "name": "include pictures",
+                    "conditions": [
+                        {
+                            "cond_param": "__file",
+                            "compare_type": "not_empty"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

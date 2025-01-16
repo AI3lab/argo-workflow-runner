@@ -1,0 +1,20 @@
+{
+    "start": {
+        "__session_id": "abc",
+        "node_51": "Please translate it to japanaese。"
+    },
+    "node": {
+        "id": "123",
+        "type": "llm",
+        "config": {
+            "inputs": [
+                "node_51"
+            ],
+            "prompt": "You are a chatbot",
+            "prompt_params": [],
+            "temperature": 0.2,
+            "model": "gpt-3.5-turbo",
+            "memory_cnt": 2
+        }
+    }
+}
