@@ -1,0 +1,191 @@
+{
+    "start": {
+        "__text": "Nice to meet you."
+    },
+    "nodes": [
+        {
+            "id": "node_1",
+            "type": "logic_branches",
+            "config": {
+                "branches": [
+                    {
+                        "name": "pictures in question",
+                        "conditions": [
+                            {
+                                "cond_param": "__file",
+                                "compare_type": "not_empty"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "node_2",
+            "type": "intention",
+            "config": {
+                "inputs": [
+                    "__text"
+                ],
+                "model": "openai/o1-mini",
+                "memory_cnt": 0,
+                "branches": [
+                    {
+                        "title": "MEME",
+                        "instruction": "When the user wants to generate images for MEME smart contract, select branch 'MEME'."
+                    },
+                    {
+                        "title": "web_reader",
+                        "instruction": "When the user give a website URL and wants to summarize the article, select branch 'web_reader'."
+                    },
+                    {
+                        "title": "google",
+                        "instruction": "When the user wants to query some realtime information, select branch 'google'."
+                    }
+                ]
+            }
+        },
+        {
+            "id": "node_3",
+            "type": "tool",
+            "config": {
+                "inputs": [
+                    "__file",
+                    "__file_transfer_type"
+                ],
+                "name": "blip"
+            }
+        },
+        {
+            "id": "node_4",
+            "type": "sp_app",
+            "config": {
+                "inputs": [
+                    "__text"
+                ],
+                "name": "meme",
+                "memory_cnt": 0
+            }
+        },
+        {
+            "id": "node_51",
+            "type": "tool",
+            "config": {
+                "inputs": [
+                    "__text"
+                ],
+                "name": "web_reader"
+            }
+        },
+        {
+            "id": "node_52",
+            "type": "llm",
+            "config": {
+                "inputs": [
+                    "node_51"
+                ],
+                "prompt": "As an information organization expert, please organize the input information in a clear and concise manner for easy reading",
+                "prompt_params": [],
+                "temperature": 0.2,
+                "model": "openai/o1-mini",
+                "memory_cnt": 0
+            }
+        },
+        {
+            "id": "node_61",
+            "type": "tool",
+            "config": {
+                "inputs": [
+                    "__text"
+                ],
+                "name": "google"
+            }
+        },
+        {
+            "id": "node_62",
+            "type": "llm",
+            "config": {
+                "inputs": [
+                    "node_61"
+                ],
+                "prompt": "You are an expert in information organization. Please organize the input information in a clear and concise manner to facilitate easy reading.",
+                "prompt_params": [],
+                "temperature": 0.2,
+                "model": "openai/o1-mini",
+                "memory_cnt": 0
+            }
+        },
+        {
+            "id": "node_7",
+            "type": "llm",
+            "config": {
+                "inputs": [
+                    "__text"
+                ],
+                "prompt": "You are an AI assistant. Please engage in friendly conversation with the user.",
+                "prompt_params": [],
+                "temperature": 0.2,
+                "model": "openai/o1-mini",
+                "memory_cnt": 0
+            }
+        }
+    ],
+    "edges": [
+        {
+            "to_node": "node_1"
+        },
+        {
+            "from_node": "node_1",
+            "from_branch": 0,
+            "to_node": "node_3"
+        },
+        {
+            "from_node": "node_1",
+            "from_branch": -1,
+            "to_node": "node_2"
+        },
+        {
+            "from_node": "node_2",
+            "from_branch": 0,
+            "to_node": "node_4"
+        },
+        {
+            "from_node": "node_2",
+            "from_branch": 1,
+            "to_node": "node_51"
+        },
+        {
+            "from_node": "node_51",
+            "to_node": "node_52"
+        },
+        {
+            "from_node": "node_2",
+            "from_branch": 2,
+            "to_node": "node_61"
+        },
+        {
+            "from_node": "node_61",
+            "to_node": "node_62"
+        },
+        {
+            "from_node": "node_2",
+            "from_branch": -1,
+            "to_node": "node_7"
+        },
+        {
+            "from_node": "node_3"
+        },
+        {
+            "from_node": "node_4"
+        },
+        {
+            "from_node": "node_52"
+        },
+        {
+            "from_node": "node_62"
+        },
+        {
+            "from_node": "node_7"
+        }
+    ]
+}

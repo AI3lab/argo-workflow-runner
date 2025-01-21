@@ -1,0 +1,15 @@
+{
+    "start": {
+        "__text": "Nice to meet you."
+    },
+    "node": {
+        "type": "tts",
+        "config": {
+            "inputs": [
+                "__text"
+            ],
+            "name": "gpt-sovits",
+            "voice": "Emma"
+        }
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "start": {
+        "__text": "Nice to meet you."
+    },
+    "node": {
+        "type": "sp_app",
+        "config": {
+            "inputs": [
+                "__text"
+            ],
+            "name": "meme",
+            "memory_cnt": 0
+        }
+    }
+}

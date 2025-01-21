@@ -1,0 +1,14 @@
+{
+    "start": {
+        "__text": "Current BTC Price."
+    },
+    "node": {
+        "type": "tool",
+        "config": {
+            "inputs": [
+                "__text"
+            ],
+            "name": "google"
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "start": {
+        "__user_id": "0x76ee9597e931e09443caf20374dc0fe3d29e2020",
+        "__text": "以太坊状态转换"
+    },
+    "node": {
+        "type": "knowledge_base",
+        "config": {
+            "inputs": [
+                "__text"
+            ],
+            "kb_name": "eth",
+            "search_type": "vector",
+            "similarity": 0.75,
+            "cnt": 3
+        }
+    }
+}

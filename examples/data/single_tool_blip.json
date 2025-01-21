@@ -1,0 +1,16 @@
+{
+    "start": {
+        "__file": "https://img.xoocity.com/learns/learn_min1.jpg",
+        "__file_transfer_type": "url"
+    },
+    "node": {
+        "type": "tool",
+        "config": {
+            "inputs": [
+                "__file",
+                "__file_transfer_type"
+            ],
+            "name": "blip"
+        }
+    }
+}
