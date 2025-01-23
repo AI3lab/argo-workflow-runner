@@ -19,6 +19,14 @@ class WorkflowManager():
             'llm': LLMNode,
             'code_block': CodeBlockNode,
             'custom_tool': CustomToolNode,
+            'sp_app':SpAppNode,
+            'agent': AgentNode,
+            'knowledge_base': KnowledgeBaseNode,
+            'tool/blip': ToolBlipNode,
+            'tool/google': ToolGoogleNode,
+            'tool/web_reader': ToolWebReaderNode,
+            'tts': TTSNode,
+
         }
 
     def add_module(self, module_type: str, module_class: Type[ExecNode]) -> None:

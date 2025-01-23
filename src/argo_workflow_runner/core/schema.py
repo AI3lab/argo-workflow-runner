@@ -37,6 +37,8 @@ class IntentionConfig(CommonModule):
 class ToolConfig(CommonModule):
     name: str
 
+
+
 class CustomToolConfig(ToolConfig):
     url: str
     method: str
@@ -55,6 +57,10 @@ class LLMConfig(CommonModule):
     temperature: float = 0.0
     model: str
     memory_cnt: Optional[int] = 0
+
+class AgentConfig(CommonModule):
+    name: str
+    agent_id: str = None
 
 class CodeBlockConfig(BaseModel):
     args: Dict[str, str]
