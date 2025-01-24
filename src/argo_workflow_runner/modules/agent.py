@@ -1,43 +1,39 @@
-import asyncio
-import aiohttp
 from typing import Dict
 
 from argo_workflow_runner.core.exec_node import ExecNode
-from argo_workflow_runner.core.schema import (
-    CustomToolConfig,
+from argo_workflow_runner.core.schema  import (
+    AgentConfig,
     ExecResponse,
 )
-from argo_workflow_runner.env_settings import settings
 from argo_workflow_runner.configs import logger
 
-class CustomToolNode(ExecNode):
+class AgentNode(ExecNode):
     def __init__(self, info, websocket):
         super().__init__(info, websocket)
-        self.config_model = CustomToolConfig.model_validate(self.config)
+        self.config_model = AgentConfig.model_validate(self.config)
 
     async def execute(self, state: Dict):
         await super().execute(state)
-
         param_obj = state.get(self.config_model.inputs[0], None)
         if param_obj is None:
             raise Exception(f'No available input: {self.config_model.inputs[0]}')
+        params = {}
+        for key in self.config_model.inputs:
+            val = state.get(key, None)
+            if val is not None:
+                params[key] = val
 
         async with aiohttp.ClientSession(
-            headers=self.config_model.headers,
+                headers=self.config_model.headers,
         ) as session:
-            if self.config_model.method == 'GET':
-                kwargs = {
-                    'params': param_obj
-                }
-            else:
-                kwargs = {
-                    'json': param_obj
-                }
-            
-            async with session.request(method=self.config_model.method, url=self.config_model.url, **kwargs) as resp:
+
+            kwargs = {
+                'text': param_obj,
+            }
+
+            async with session.request(method="POST", url=self.config_model.url, **kwargs) as resp:
                 resp.raise_for_status()
                 resp_text = await resp.text()
-
         logger.info(resp_text)
 
         state[self.id] = resp_text
@@ -50,3 +46,4 @@ class CustomToolNode(ExecNode):
                 'result': resp_text,
             },
         ))
+
