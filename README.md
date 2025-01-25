@@ -1,4 +1,11 @@
-# Argo Workflow Runner
+<p align="center">
+  <picture>
+    <img alt="Argo Library" src="logo.png" width="252" height="120" style="max-width: 100%;">
+  </picture>
+  <br/>
+  <br/>
+</p>
+---
 
 workflow runner engine for argo
 
