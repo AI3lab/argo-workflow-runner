@@ -6,6 +6,7 @@ from argo_workflow_runner.core.schema import (
     LogicBranchCondition,
     ExecResponse,
 )
+from argo_workflow_runner.configs import logger
 
 class LogicBranchesNode(ExecNode):
     def __init__(self, info, websocket):
@@ -15,8 +16,9 @@ class LogicBranchesNode(ExecNode):
     async def execute(self, state: Dict):
         await super().execute(state)
 
-        self.select_branch_id = -1
+        self.select_branch_id = 0
         select_branch_name = 'default'
+        logger.info(f"Select branch state: {state}")
 
         branch_cnt = len(self.config_model.branches)
         for idx in range(branch_cnt):
@@ -37,6 +39,7 @@ class LogicBranchesNode(ExecNode):
             'select_branch_id': self.select_branch_id,
             'select_branch_name': select_branch_name,
         }
+        logger.info(f"Select branch: {result_data}")
         state[self.id] = result_data
 
         await self.send_response(ExecResponse(

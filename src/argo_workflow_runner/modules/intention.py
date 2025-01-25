@@ -10,6 +10,7 @@ from argo_workflow_runner.core.schema import (
     ExecResponse,
 )
 from argo_workflow_runner.utils.llm import get_chat_model
+from argo_workflow_runner.configs import logger
 
 SYSTEM_TEMPLATE = """
 You are an AI assistant that determines the user's intention based on the user's words. 
@@ -45,10 +46,10 @@ class IntentionNode(ExecNode):
             'text': state.get(self.config_model.inputs[0], ''),
         }
         result = await chain.ainvoke(input)
-        logger.info(f'selected branch: {result} in {self.id}, {self.type}')
+        logger.info(f'selected branch: {result} in {self.id} ')
 
-        self.select_branch_id = -1
-        select_branch_name = 'default'
+        self.select_branch_id = 0
+        select_branch_name = 'default branch'
 
         if result != 'none':
             branch_cnt = len(self.config_model.branches)
@@ -63,6 +64,7 @@ class IntentionNode(ExecNode):
             'select_branch_id': self.select_branch_id,
             'select_branch_name': select_branch_name,
         }
+        logger.info(f'selected branch: {result_data} in {self.id}, {self.type}')
         state[self.id] = result_data
 
         await self.send_response(ExecResponse(

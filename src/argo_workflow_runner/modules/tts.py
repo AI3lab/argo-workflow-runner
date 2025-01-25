@@ -9,6 +9,7 @@ from argo_workflow_runner.core.schema  import (
 )
 import argo_workflow_runner.utils.tts as tts
 import argo_workflow_runner.utils.ws_messager as ws_messager
+from argo_workflow_runner.configs import logger
 
 class TTSNode(ExecNode):
     def __init__(self, info, websocket):

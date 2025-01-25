@@ -1,6 +1,7 @@
 from typing import Dict
 from langchain.prompts.chat import ChatPromptTemplate, SystemMessagePromptTemplate, HumanMessagePromptTemplate
 from langchain_core.output_parsers import StrOutputParser
+from argo_workflow_runner.configs import logger
 
 from argo_workflow_runner.core.exec_node import ExecNode
 from argo_workflow_runner.core.schema import (
@@ -74,6 +75,7 @@ class LLMNode(ExecNode):
         ))
         
         state[self.id] = result
+        logger.info(f'LLM result : {result}')
 
         await self.send_response(ExecResponse(
             type='result',
