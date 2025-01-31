@@ -8,6 +8,7 @@ from argo_workflow_runner.core.schema  import (
     ExecResponse,
 )
 from argo_workflow_runner.env_settings import settings
+from argo_workflow_runner.configs import logger
 
 
 

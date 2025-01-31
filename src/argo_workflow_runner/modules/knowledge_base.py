@@ -7,6 +7,7 @@ from argo_workflow_runner.core.schema import (
     ExecResponse,
 )
 from argo_workflow_runner.env_settings import settings
+from argo_workflow_runner.configs import logger
 
 class KnowledgeBaseNode(ExecNode):
     def __init__(self, info, websocket):
@@ -23,8 +24,8 @@ class KnowledgeBaseNode(ExecNode):
 
         async with aiohttp.ClientSession() as session:
             payload = {
-                "knowledge_base_id": self.config_model.kb_name,
-                "user_id": user_id,
+                "knowledge_base_id": self.config_model.knowledge_base_id,
+                "user_id": self.config_model.knowledge_user_id,
                 "q": query_info,
                 "similarity": self.config_model.similarity,
                 "top_k": self.config_model.cnt,
@@ -39,7 +40,7 @@ class KnowledgeBaseNode(ExecNode):
         state[self.id] = result
 
         await self.send_response(ExecResponse(
-            type='app',
+            type='result',
             node_id=self.id,
             node_type=self.type,
             data={

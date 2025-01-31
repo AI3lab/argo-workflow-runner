@@ -6,6 +6,7 @@ from argo_workflow_runner.core.schema  import (
     ExecResponse,
 )
 from argo_workflow_runner.utils.web_search import serp_api_search
+from argo_workflow_runner.configs import logger
 
 class ToolGoogleNode(ExecNode):
     def __init__(self, info, websocket):

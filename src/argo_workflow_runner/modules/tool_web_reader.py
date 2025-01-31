@@ -6,6 +6,7 @@ from argo_workflow_runner.core.schema  import (
     ToolConfig,
     ExecResponse,
 )
+from argo_workflow_runner.configs import logger
 
 class ToolWebReaderNode(ExecNode):
     def __init__(self, info, websocket):

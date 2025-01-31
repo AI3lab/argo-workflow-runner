@@ -6,6 +6,7 @@ from argo_workflow_runner.core.schema  import (
     ExecResponse,
 )
 from argo_workflow_runner.configs import logger
+from argo_workflow_runner.configs import logger
 
 class AgentNode(ExecNode):
     def __init__(self, info, websocket):
